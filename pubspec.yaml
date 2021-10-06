@@ -1,13 +1,23 @@
-# This is not a real package, and is only used to add dev dependencies.
-#
-# For example, now its possible at the root of this package, to execute:
-#   pub run dev:<command>
-name: repository
-publish_to: none
-
+name: ngsecurity
+version: 7.0.1
+description: >-
+  The missing security library since Angular v7.
+repository: https://github.com/angulardart-community/ngsecurity
 environment:
-  sdk: ">=2.8.4 <3.0.0"
+  sdk: '>=2.12.0 <3.0.0'
 
-dev_dependencies:
-  dev:
-    path: dev
+dependencies:
+  angular: ^7.0.1
+  build: ^2.1.1
+  build_config: '>=0.2.6 <2.0.0' # Runtime dependency with no import
+  code_builder: ^4.1.0
+  csslib: ^0.17.0
+  path: ^1.6.1
+  source_gen: ^1.1.1
+  source_span: ^1.4.0
+dev_dependencies: 
+  angular_test: ^4.0.0
+  build_runner: ^2.1.4
+  build_test: ^2.1.4
+  build_web_compilers: ^3.2.1
+  meta: ^1.7.0
