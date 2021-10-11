@@ -1,0 +1,30 @@
+name: Dart
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix: 
+        sdk: [stable, 2.14.0]
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: dart-lang/setup-dart@v1.2
+        with:
+          sdk: ${{ matrix.sdk }}
+
+      - name: Install dependencies
+        run: dart pub get
+
+      - name: Install Chrome for testing
+        uses: browser-actions/setup-chrome@latest
+
+      - name: Run tests
+        run: dart run build_runner test -- -p chrome
