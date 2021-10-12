@@ -3,7 +3,7 @@
 import 'dart:html';
 
 import 'package:angular_test/angular_test.dart';
-import 'package:ngsecurity/src/security/dom_sanitization_service_impl.dart';
+import 'package:ngsecurity/src/security/dom_sanitization_service.dart';
 import 'package:test/test.dart';
 import 'package:angular/angular.dart';
 import 'package:ngsecurity/security.dart';
@@ -88,12 +88,12 @@ class UnsafeAttributeComponent {
 @Component(
   selector: 'trusted-value',
   template: '<a [href]="href">Link Title</a>',
-	providers: [ClassProvider(DomSanitizationServiceImpl)]
+	providers: [ClassProvider(DomSanitizationService)]
 )
 class TrustedValueComponent {
   late SafeUrl href;
 
-  TrustedValueComponent(DomSanitizationServiceImpl sanitizer) {
+  TrustedValueComponent(DomSanitizationService sanitizer) {
     href = sanitizer.bypassSecurityTrustUrl('javascript:alert(1)');
   }
 }
@@ -101,12 +101,12 @@ class TrustedValueComponent {
 @Component(
   selector: 'wrong-trusted-value',
   template: '<a [href]="href">Link Title</a>',
-	providers: [ClassProvider(DomSanitizationServiceImpl)]
+	providers: [ClassProvider(DomSanitizationService)]
 )
 class WrongTrustedValueComponent {
   late SafeHtml href;
 
-  WrongTrustedValueComponent(DomSanitizationServiceImpl sanitizer) {
+  WrongTrustedValueComponent(DomSanitizationService sanitizer) {
     href = sanitizer.bypassSecurityTrustHtml('javascript:alert(1)');
   }
 }

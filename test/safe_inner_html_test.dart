@@ -2,6 +2,7 @@
 library angular2.test.testing.ng_test_bed_test;
 
 import 'package:angular_test/angular_test.dart';
+import 'package:ngsecurity/src/security/dom_sanitization_service.dart';
 import 'package:test/test.dart';
 import 'package:angular/angular.dart';
 import 'package:ngsecurity/security.dart';
@@ -77,6 +78,7 @@ class NormalInnerHtmlTest {
 @Component(
   selector: 'test',
   directives: [SafeInnerHtmlDirective],
+	providers: [ClassProvider(DomSanitizationService)],
   template: r'''
        (<span class="other-element">Secure</span>)
        <div [safeInnerHtml]="trustedHtml"></div>
@@ -97,6 +99,7 @@ class TrustedSafeInnerHtmlTest {
        (<span class="other-element">Secure</span>)
        <div [innerHtml]="trustedHtml"></div>
     ''',
+	providers: [ClassProvider(DomSanitizationService)],
 )
 class TrustedInnerHtmlTest {
   /// Value will be bound directly to the DOM.
@@ -124,6 +127,7 @@ class InterpolatedNormalInnerHtmlTest {
        (<span class="other-element">Secure</span>)
        <div innerHtml="{{trustedHtml}}"></div>
     ''',
+	providers: [ClassProvider(DomSanitizationService)],
 )
 class InterpolatedTrustedInnerHtmlTest {
   // Value will be passed through interpolate0 and then passed through the

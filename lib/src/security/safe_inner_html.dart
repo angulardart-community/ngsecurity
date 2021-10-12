@@ -2,7 +2,7 @@ import 'dart:html' show Element, NodeTreeSanitizer;
 
 import 'package:angular/angular.dart';
 
-import 'dom_sanitization_service_impl.dart' show SafeHtmlImpl;
+import 'dom_sanitization_service.dart' show SafeHtmlImpl;
 
 /// Sets [Element.innerHtml] _without_ sanitizing the HTML output.
 ///
