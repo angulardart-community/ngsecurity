@@ -1,6 +1,6 @@
 import 'dart:html';
 
-import 'package:angular/src/utilities.dart';
+import 'package:ngdart/src/utilities.dart';
 
 import 'url_sanitizer.dart';
 

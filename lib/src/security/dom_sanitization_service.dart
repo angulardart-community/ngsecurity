@@ -1,6 +1,6 @@
-import 'package:angular/src/utilities.dart';
+import 'package:ngdart/src/utilities.dart';
 
-import 'package:angular/di.dart' show Injectable;
+import 'package:ngdart/di.dart' show Injectable;
 import 'html_sanitizer.dart';
 import 'style_sanitizer.dart';
 import 'url_sanitizer.dart';
@@ -105,7 +105,6 @@ class DomSanitizationService implements SanitizationService {
         'Security violation in resource url. Create SafeValue');
   }
 
-
   /// Bypass security and trust the given value to be safe HTML.
   ///
   /// Only use this when the bound HTML is unsafe (e.g. contains `<script>`
@@ -139,7 +138,6 @@ class DomSanitizationService implements SanitizationService {
   SafeResourceUrl bypassSecurityTrustResourceUrl(String? value) =>
       SafeResourceUrlImpl(value ?? '');
 }
-
 
 abstract class SafeValueImpl implements SafeValue {
   /// Named this way to allow security teams to
