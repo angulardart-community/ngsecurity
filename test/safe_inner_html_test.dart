@@ -1,10 +1,9 @@
 @TestOn('browser')
 library angular2.test.testing.ng_test_bed_test;
 
-import 'package:angular_test/angular_test.dart';
-import 'package:ngsecurity/src/security/dom_sanitization_service.dart';
+import 'package:ngtest/angular_test.dart';
 import 'package:test/test.dart';
-import 'package:angular/angular.dart';
+import 'package:ngdart/angular.dart';
 import 'package:ngsecurity/security.dart';
 
 import 'safe_inner_html_test.template.dart' as ng;
@@ -14,43 +13,39 @@ void main() {
 
   group('$SafeInnerHtmlDirective', () {
     test('normally, "innerHtml" should be sanitized', () async {
-      var testBed =
-          NgTestBed(ng.createNormalInnerHtmlTestFactory());
+      var testBed = NgTestBed(ng.createNormalInnerHtmlTestFactory());
       var testRoot = await testBed.create();
       expect(testRoot.text, contains('(Secure)'));
     });
 
     test('"safeInnerHtml" should be trusted', () async {
-      var testBed =
-          NgTestBed(ng.createTrustedSafeInnerHtmlTestFactory());
+      var testBed = NgTestBed(ng.createTrustedSafeInnerHtmlTestFactory());
       var testRoot = await testBed.create();
       expect(testRoot.text, contains('(Unsafe)'));
     });
 
     test('"innerHtml" should be trusted', () async {
-      var testBed =
-          NgTestBed(ng.createTrustedInnerHtmlTestFactory());
+      var testBed = NgTestBed(ng.createTrustedInnerHtmlTestFactory());
       var testRoot = await testBed.create();
       expect(testRoot.text, contains('(Unsafe)'));
     });
 
     test('normally, interpolated innerHtml should be sanitized', () async {
-      var testBed = NgTestBed(
-          ng.createInterpolatedNormalInnerHtmlTestFactory());
+      var testBed =
+          NgTestBed(ng.createInterpolatedNormalInnerHtmlTestFactory());
       var testRoot = await testBed.create();
       expect(testRoot.text, contains('(Secure)'));
     });
 
     test('SafeHtml should be passed through interpolation', () async {
-      var testBed = NgTestBed(
-          ng.createInterpolatedTrustedInnerHtmlTestFactory());
+      var testBed =
+          NgTestBed(ng.createInterpolatedTrustedInnerHtmlTestFactory());
       var testRoot = await testBed.create();
       expect(testRoot.text, contains('(Unsafe)'));
     });
 
     test('unsafe HTML should throw', () async {
-      var testBed =
-          NgTestBed(ng.createUntrustedInnerHtmlTestFactory());
+      var testBed = NgTestBed(ng.createUntrustedInnerHtmlTestFactory());
       expect(testBed.create(), throwsA(isUnsupportedError));
     });
   });
@@ -78,7 +73,7 @@ class NormalInnerHtmlTest {
 @Component(
   selector: 'test',
   directives: [SafeInnerHtmlDirective],
-	providers: [ClassProvider(DomSanitizationService)],
+  providers: [ClassProvider(DomSanitizationService)],
   template: r'''
        (<span class="other-element">Secure</span>)
        <div [safeInnerHtml]="trustedHtml"></div>
@@ -99,7 +94,7 @@ class TrustedSafeInnerHtmlTest {
        (<span class="other-element">Secure</span>)
        <div [innerHtml]="trustedHtml"></div>
     ''',
-	providers: [ClassProvider(DomSanitizationService)],
+  providers: [ClassProvider(DomSanitizationService)],
 )
 class TrustedInnerHtmlTest {
   /// Value will be bound directly to the DOM.
@@ -127,7 +122,7 @@ class InterpolatedNormalInnerHtmlTest {
        (<span class="other-element">Secure</span>)
        <div innerHtml="{{trustedHtml}}"></div>
     ''',
-	providers: [ClassProvider(DomSanitizationService)],
+  providers: [ClassProvider(DomSanitizationService)],
 )
 class InterpolatedTrustedInnerHtmlTest {
   // Value will be passed through interpolate0 and then passed through the

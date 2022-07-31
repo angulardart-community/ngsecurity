@@ -4,7 +4,7 @@ library angular2.test.di.provider_test;
 import 'dart:mirrors';
 
 import 'package:test/test.dart';
-import 'package:angular/di.dart';
+import 'package:ngdart/di.dart';
 
 void main() {
   group('Binding', () {
